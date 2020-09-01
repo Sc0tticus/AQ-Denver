@@ -14,17 +14,1644 @@
 		<!-- <script src="./heatmap.js"></script> -->
 		<script src="./heatmap.min.js"></script>
 		<script src="./leaflet-heatmap.js"></script>
-
+		<script src="./index.js"></script>
 </head>
 <body>
 
 <div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
 
+	// L.tileLayer('https://tiles.breezometer.com/v1/air-quality/breezometer-aqi/current-conditions/{z}/{x}/{y}.png?key=YOUR_API_KEY&breezometer_aqi_color=indiper', {
+	// 	maxZoom: 18,
+	// 	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+	// 		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+	// 		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	// 	id: 'mapbox/streets-v11',
+	// 	tileSize: 512,
+	// 	zoomOffset: -1
+	// }).addTo(mymap);
 
-const heatMapData = geojson.features.map((obj) => {
-	return { lat: obj.geometry.coordinates[1], lng: obj.geometry.coordinates[0], value: obj.properties.snr_read }
-})
+window.onload = function() {
+
+	var geojson = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0153,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01535,
+          39.75956
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01732,
+          39.75491
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01868,
+          39.75488
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01868,
+          39.75488
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02282,
+          39.75478
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0241,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02669,
+          39.75475
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02669,
+          39.75475
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02779,
+          39.75475
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02879,
+          39.75475
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0295,
+          39.75483
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02933,
+          39.75124
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02838,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02838,
+          39.75019
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 27
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 28
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 33
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 37
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 38
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02835,
+          39.75022
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 30
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02943,
+          39.74999
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 27
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02973,
+          39.75002
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02986,
+          39.75002
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 23
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75055
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 22
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75055
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 21
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02992,
+          39.75104
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 20
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02992,
+          39.75104
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 18
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02992,
+          39.75104
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02992,
+          39.75109
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75166
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75299
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 16
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75299
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75299
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 13
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75434
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 12
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75434
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75434
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 10
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.75434
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02894,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02894,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02589,
+          39.75483
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02413,
+          39.75483
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02338,
+          39.75483
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02106,
+          39.75483
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.0163,
+          39.7548
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01591,
+          39.75488
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01578,
+          39.75611
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01578,
+          39.75611
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01578,
+          39.75611
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01578,
+          39.75877
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01573,
+          39.75954
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01517,
+          39.75962
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01517,
+          39.75962
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01522,
+          39.75951
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.01522,
+          39.75951
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02111,
+          39.75851
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02111,
+          39.75849
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02395,
+          39.75977
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02495,
+          39.76018
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.76909
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.02988,
+          39.76909
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.04302,
+          39.77666
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.04378,
+          39.77662
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05792,
+          39.77807
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05917,
+          39.77805
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05969,
+          39.77813
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05969,
+          39.77813
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05969,
+          39.77813
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05976,
+          39.77813
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05971,
+          39.77802
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05971,
+          39.77802
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05797,
+          39.77802
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05344,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05344,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05344,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05341,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05341,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05341,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.05057,
+          39.77654
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.04389,
+          39.77659
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03851,
+          39.77669
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03851,
+          39.77669
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03547,
+          39.77672
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03539,
+          39.77636
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03577,
+          39.7762
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03496,
+          39.7759
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03462,
+          39.7758
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03468,
+          39.76924
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03468,
+          39.76924
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03465,
+          39.76596
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03465,
+          39.76596
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03468,
+          39.76358
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03468,
+          39.76289
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03468,
+          39.76289
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03465,
+          39.75946
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    },
+
+
+
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03465,
+          39.75867
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 0
+      }
+    },
+
+
+
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.03406,
+          39.75851
+        ]
+      },
+      "properties": {
+        "diagnostic_id": "DiagnosticBluetoothBeaconParticulateMatter2P5MicronId",
+        "snr_read": 1
+      }
+    }
+  ]
+};
+
+const heatMapData = fetch(baseURL)
+  .then(response => response.json())
+  .then(data => data.map(point => {
+		return { lat: point.latitude, lng: point.longitude, value: point.snr_read }
+	}));
+
+
+// geojson.features.map((o) => {
+// 	return { lat: o.geometry.coordinates[1], lng: o.geometry.coordinates[0], value: o.properties.snr_read }
+// })
 
 const baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 	maxZoom: 18,
@@ -65,7 +1692,7 @@ var testData = {
   data: heatMapData
 };
 
-console.log('setting data', testData)
+// console.log('setting data', testData)
 
 heatmapLayer.setData(testData);
 
