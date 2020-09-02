@@ -1,55 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Quick Start - Leaflet</title>
+	<title>Air Quality (PM2.5) Denver</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
 		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-		<!-- <script src="./heatmap.js"></script> -->
-		<script src="./heatmap.min.js"></script>
-		<script src="./leaflet-heatmap.js"></script>
+		<script src="build/heatmap.min.js"></script>
+		<script src="leaflet-heatmap/leaflet-heatmap.js"></script>
 		<script src="./index.js"></script>
 </head>
 <body>
 <div id="mapid" style="width: 600px; height: 400px;"></div>
 <script>
+
+const baseURL = 'http://localhost:4000/air_qualities';
+
 window.onload = function() {
-// geojson.features.map((o) => {
-// 	return { lat: o.geometry.coordinates[1], lng: o.geometry.coordinates[0], value: o.properties.snr_read }
-// })
-const baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-	maxZoom: 18,
-	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-	id: 'mapbox/streets-v11',
-	tileSize: 512,
-	zoomOffset: -1
-});
-const heatmapLayer = new HeatmapOverlay({
-	// radius should be small ONLY if scaleRadius is true (or small radius is intended)
-	"radius": 0.002,
-	"maxOpacity": .8,
-	// scales the radius based on map zoom
-	"scaleRadius": true,
-	// if set to false the heatmap uses the global maximum for colorization
-	// if activated: uses the data maximum within the current map boundaries
-	//   (there will always be a red spot with useLocalExtremas true)
-	// "useLocalExtrema": true,
-	// which field name in your data represents the latitude - default "lat"
-	latField: 'lat',
-	// which field name in your data represents the longitude - default "lng"
-	lngField: 'lng'
-});
-// L.map('mapid').setView([39.758, -105.033], 13);
-const mymap = new L.Map('mapid', {
-	center: new L.LatLng(39.758, -105.033),
-	zoom: 13,
-	layers: [baseLayer, heatmapLayer]
-});
-fetch(baseURL)
+
+	fetch(baseURL)
   .then(response => {
     response.json().then(data => {
       const heatMapData = data.map(point => {
@@ -59,11 +29,35 @@ fetch(baseURL)
         max: 3,
         data: heatMapData
       };
-      console.log('the returned data is', heatMapData);
       heatmapLayer.setData(testData)
     })
   });
+
+const baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+	maxZoom: 18,
+	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	id: 'mapbox/streets-v11',
+	tileSize: 512,
+	zoomOffset: -1
+});
+
+const heatmapLayer = new HeatmapOverlay({
+	"radius": 0.002,
+	"maxOpacity": .8,
+	"scaleRadius": true,
+	latField: 'lat',
+	lngField: 'lng'
+});
+
+const mymap = new L.Map('mapid', {
+	center: new L.LatLng(39.758, -105.033),
+	zoom: 13,
+	layers: [baseLayer, heatmapLayer]
+	});
 }
+
 </script>
 </body>
 </html>
