@@ -1,5 +1,10 @@
 # About
-This repository allows the user to see a heatmap of paticle data (PM2.5) collected by Sawatch Labs on March 14th, 2020 around Denver, Colorado. The heatmap.js plugin was used to make this data visual: https://www.patrick-wied.at/static/heatmapjs/example-heatmap-leaflet.html
+This repository allows the user to see a heatmap of particle data (PM2.5) collected by Sawatch Labs on March 14th, 2020 around Denver, Colorado. 
+
+Frontend Deployed at: https://air-quality-data-denver-metro.web.app/
+Backend Deployed at: https://air-quality-sawatch.herokuapp.com/air_qualities
+
+The heatmap.js plugin was used to make this data visual: https://www.patrick-wied.at/static/heatmapjs/example-heatmap-leaflet.html
 
 # Frontend Repository
 Clone down the following repo: https://github.com/Sc0tticus/AQ-Heatmaps/blob/master/README.md and run lite-server to get the frontend running locally.
@@ -8,7 +13,6 @@ Clone down the following repo: https://github.com/Sc0tticus/AQ-Heatmaps/blob/mas
 Make sure you have PostgreSQL installed locally before working with this repository.
 Clone down the following repository: https://github.com/Sc0tticus/RoR-Air-Quality-Backend and run 'bundle install'.
 Then run 'rails db:migrate' followed by 'rails db:seed'. Lastly run 'rails s -p4000' to get the backend server running locally.
-
 
 # heatmap.js
 Dynamic Heatmaps for the Web. 
